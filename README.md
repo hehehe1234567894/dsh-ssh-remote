@@ -1,4 +1,4 @@
-# deepseek-harness-ssh
+# dsh-ssh-remote
 
 DSH（DeepSeek Harness）的 SSH 远程操作插件：让运行在云服务器上的 DSH 通过 SSH 远程操作另一台电脑 —— 执行命令 / 编译、读写文件、上传下载。
 
