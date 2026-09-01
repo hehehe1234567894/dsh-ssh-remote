@@ -1,0 +1,22 @@
+# deepseek-harness-ssh bundle layer.
+# This patch list is applied automatically whenever the bundle is listed in
+# dsh.profile.bundles. Per-deployment overrides belong in
+# ~/.dsh/profiles/<profile>/cordis.patch.yml (later layers win).
+- insert:
+    - id: ssh
+      name: deepseek-harness-ssh
+      config:
+        host: localhost
+        # Default reverse-SSH listening port on this host (home PC's sshd
+        # surfaced here via `ssh -R 2222:localhost:22`). For a direct public-IP
+        # target or Tailscale, set host/port accordingly.
+        port: 2222
+        user: !!js process.env.DSH_SSH_USER ?? 'home'
+        identityFile: !!js process.env.DSH_SSH_IDENTITY ?? '~/.ssh/dsh_cloud_to_home'
+        connectTimeout: 10
+        serverAliveInterval: 15
+        serverAliveCountMax: 3
+        strictHostKeyChecking: accept-new
+        knownHostsFile: ~/.ssh/known_hosts
+        defaultShell: bash
+        maxOutputChars: 200000
