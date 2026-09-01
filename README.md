@@ -1,4 +1,4 @@
-# dsh-ssh-remote
+# deepseek-harness-ssh
 
 DSH（DeepSeek Harness）的 SSH 远程操作插件：让运行在云服务器上的 DSH 通过 SSH 远程操作另一台电脑 —— 执行命令 / 编译、读写文件、上传下载。
 
@@ -49,6 +49,20 @@ DSH（DeepSeek Harness）的 SSH 远程操作插件：让运行在云服务器�
 - 卡片读写走插件自己的同源 HTTP 端点 `POST /ssh-remote`（`{method:'config', save?}`）；
 - 保存值持久化到 `~/.dsh/ssh-remote.config.json`，叠加在 `cordis.patch.yml` 组合值之上；
 - 工具每次调用读取合并后的活配置，因此保存即生效。
+
+## 安装（快速）
+
+一条命令，自动完成「拉取源码 → 安装到 profile → 注册 bundle」：
+
+```bash
+dsh plugin add --profile web https://github.com/hehehe1234567894/dsh-ssh-remote.git
+```
+
+- 装好后**重启 DSH** 一次，加载主机端工具与系统提示注入；Web 界面部分刷新浏览器即可用
+- 以后升级：重新执行同一条命令即可拉取最新版
+- 装完后到 **设置 → 插件 → SSH 远程连接** 卡片里添加你的电脑，或直接在「选择工作区」弹窗里浏览远程目录
+
+> profile 的 nodeLinker 需为 `hoisted`（DSH 默认），插件从 profile 根解析依赖。
 
 ## 部署步骤（云服务器侧，已完成）
 
